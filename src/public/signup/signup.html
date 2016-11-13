@@ -1,0 +1,69 @@
+<div class="container" ng-controller="SignupController as reg">
+	<div class="col-xs-12 pull-right">
+	<fieldset>
+
+	<form name="regForm" novalidate>
+	  <div class="form-group form-horizontal">
+	    <label for="username" class="col-xs-4 col-form-label">First Name: {{ reg.user.username }} </label>
+		<div class="col-xs-8">
+		    <input type="text" class="form-control" id="username" name="username" placeholder="First Name"
+	          ng-model="reg.user.username"
+	          required
+	          minlength="4"
+	          ng-maxlength="10">
+          <span 
+            ng-if="(regForm.username.$error.minlength || regForm.username.$error.required) && regForm.username.$touched">
+            Username must be at least 4 characters long
+          </span>
+          <span ng-if="regForm.username.$error.maxlength && regForm.username.$touched">
+            Username must not be longer than 10 characters
+          </span>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="last_name" class="col-xs-4 col-form-label">Last Name:  {{ reg.user.last_name }}</label>
+		<div class="col-xs-8">
+		    <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name"
+	          ng-model="reg.user.last_name"
+	          required
+	          minlength="4"
+	          ng-maxlength="10">
+          <span 
+            ng-if="(regForm.last_name.$error.minlength || regForm.last_name.$error.required) && regForm.last_name.$touched">
+            Last name must be at least 4 characters long
+          </span>
+          <span ng-if="regForm.last_name.$error.maxlength && regForm.last_name.$touched">
+            Last name must not be longer than 10 characters
+          </span>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="email" class="col-xs-4 col-form-label">Email address:  {{ reg.user.email }} </label>
+		<div class="col-xs-8">
+		    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Email"
+		    ng-model="reg.user.email" required>
+		</div>
+	  </div>
+
+	  <div class="form-group">
+	    <label for="telephone" class="col-xs-4 col-form-label">Telephone</label>
+	    <div class="col-xs-8">
+	      <input class="form-control" type="tel" placeholder="1-(555)-555-5555" id="phone" name="phone"
+	      ng-model="reg.user.phone"
+          pattern="(\d{1})-(\d{3})-(\d{3})-(\d{4})">
+          <span ng-if="regForm.phone.$invalid && regForm.phone.$touched">
+            Phone must be in the format ###-###-####.
+          </span>
+	    </div>
+	  </div>
+
+      <button  type="submit" class="btn btn-primary col-xs-8 col-xs-push-4"
+      ng-disabled="regForm.$invalid"
+      ng-click="reg.submit()">Submit</button>
+
+
+	</form>
+	</fieldset>
+
+	</div>
+</div>
