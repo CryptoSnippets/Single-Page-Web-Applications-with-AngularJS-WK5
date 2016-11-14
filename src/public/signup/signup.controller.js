@@ -1,16 +1,26 @@
-(function () {
-"use strict";
+(function() {
+'use strict';
 
 angular.module('public')
-.controller('SignupController', SignupController);
+.controller('SignupController', SignupController)
+.value('userInfo', {});
 
-function SignupController() {
-  var reg = this;
+SignupController.$inject = ['MenuService', 'userInfo'];
+function SignupController(MenuService, userInfo) {
+  var signup = this;
 
-  reg.submit = function () {
-    reg.completed = true;
+  signup.submit = function () {
+    MenuService.getShortName(signup.user.favorite)
+    .then(function (response) {
+      angular.extend(userInfo, signup.user);
+      userInfo.menuItem = response.data;
+      userInfo.registered = signup.complete = true;
+    })
+    .catch(function (error) {
+      signup.dishNotFound = true;
+    });
   };
+
 }
 
 })();
-
