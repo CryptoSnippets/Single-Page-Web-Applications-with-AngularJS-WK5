@@ -51,11 +51,11 @@
 	  <div class="form-group">
 	    <label for="telephone" class="col-xs-4 col-form-label">Telephone:  <em>{{ signupCtrl.user.phone }}</em></label>
 	    <div class="col-xs-8">
-	      <input class="form-control" type="tel" placeholder="1-(555)-555-5555" id="phone" name="phone"
+	      <input class="form-control" type="tel" placeholder="1-555-555-5555" id="phone" name="phone"
 	      ng-model="signupCtrl.user.phone"
           pattern="(\d{1})-(\d{3})-(\d{3})-(\d{4})">
           <span ng-if="regForm.phone.$invalid && regForm.phone.$touched">
-            Phone must be in the format ###-###-####.
+            Phone must be in the format #-###-###-####.
           </span>
 	    </div>
 	  </div>
